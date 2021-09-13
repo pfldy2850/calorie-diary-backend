@@ -1,10 +1,10 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Ingredient } from 'src/ingredients/entities/ingredient.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Dish } from 'src/dishes/entities/dish.entity';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Dish {
+export class Ingredient {
   @PrimaryGeneratedColumn()
   @Field(type => Int)
   readonly id: number;
@@ -12,10 +12,6 @@ export class Dish {
   @Column({ length: 255 })
   @Field()
   name: string;
-
-  @Column()
-  @Field()
-  isCompleteProduct: boolean;
 
   @Column()
   @Field()
@@ -52,13 +48,4 @@ export class Dish {
   @Column()
   @Field()
   sodium: number;
-
-  @ManyToMany(
-    type => Ingredient, 
-    ingredients => ingredients.id, {
-    cascade: false
-  })
-  @JoinTable()
-  @Field(type => [Ingredient])
-  contains: Ingredient[];
 }

@@ -2,39 +2,69 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Ingredient {
+  id: Int!
+  name: String!
+  calorie: Float!
+  carbohydrate: Float!
+  sugars: Float!
+  protein: Float!
+  fat: Float!
+  saturatedFat: Float!
+  transFat: Float!
+  cholesterol: Float!
+  sodium: Float!
+}
+
+type Dish {
+  id: Int!
+  name: String!
+  isCompleteProduct: Boolean!
+  calorie: Float!
+  carbohydrate: Float!
+  sugars: Float!
+  protein: Float!
+  fat: Float!
+  saturatedFat: Float!
+  transFat: Float!
+  cholesterol: Float!
+  sodium: Float!
+  contains: [Ingredient!]!
+}
+
+type Query {
+  dishes: [Dish!]!
+  dish(id: Int!): Dish!
+  ingredients: [Ingredient!]!
+  ingredient(id: Int!): Ingredient!
+}
+
+type Mutation {
+  createDish(createDishInput: CreateDishInput!): Dish!
+  updateDish(updateDishInput: UpdateDishInput!): Dish!
+  removeDish(id: Int!): Dish!
+  createIngredient(createIngredientInput: CreateIngredientInput!): Ingredient!
+  updateIngredient(updateIngredientInput: UpdateIngredientInput!): Ingredient!
+  removeIngredient(id: Int!): Ingredient!
+}
+
 input CreateDishInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-type Dish {
-  calorie: Float!
-  carbohydrate: Float!
-  cholesterol: Float!
-  fat: Float!
-  id: Int!
-  ingredients: [Dish!]!
-  isCompleteProduct: Boolean!
-  name: String!
-  protein: Float!
-  saturatedFat: Float!
-  sodium: Float!
-  sugars: Float!
-  transFat: Float!
-}
-
-type Mutation {
-  createDish(createDishInput: CreateDishInput!): Dish!
-  removeDish(id: Int!): Dish!
-  updateDish(updateDishInput: UpdateDishInput!): Dish!
-}
-
-type Query {
-  dish(id: Int!): Dish!
-  dishes: [Dish!]!
-}
-
 input UpdateDishInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateIngredientInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateIngredientInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
