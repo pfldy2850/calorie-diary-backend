@@ -4,36 +4,26 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path/posix';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DishesModule } from './dishes/dishes.module';
-import { Dish } from './dishes/entities/dish.entity';
-import { Ingredient } from './ingredients/entities/ingredient.entity';
-import { IngredientsModule } from './ingredients/ingredients.module';
-
+import { UsersModule } from './users/users.module';
+import { EatHistoriesModule } from './eat-histories/eat-histories.module';
+import { FoodsModule } from './foods/foods.module';
+import { RecipeesModule } from './recipes/recipes.module';
+import { DatabaseModule } from './database/database.module';
 
 // FIXME: load environment variables from .env files
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'test-user',
-      password: 'test-user',
-      database: 'CalorieDiary',
-      entities: [ 
-        Dish,
-        Ingredient
-      ],
-      synchronize: true,
-    }),
+    DatabaseModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'src/generated/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'src/_generated/schema.gql'),
       sortSchema: false,
       debug: true,
       playground: true,
     }),
-    DishesModule,
-    IngredientsModule,
+    UsersModule,
+    FoodsModule,
+    RecipeesModule,
+    EatHistoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

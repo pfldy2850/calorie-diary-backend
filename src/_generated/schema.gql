@@ -1,0 +1,116 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type EatHistory {
+  id: Int!
+  user: User!
+}
+
+type User {
+  id: Int!
+  eatHistories: [EatHistory!]!
+}
+
+type Food {
+  id: Int!
+  name: String!
+  calorie: Float!
+  carbohydrate: Float!
+  sugars: Float!
+  protein: Float!
+  fat: Float!
+  saturatedFat: Float!
+  transFat: Float!
+  cholesterol: Float!
+  sodium: Float!
+}
+
+type Recipe {
+  id: Int!
+  name: String!
+  contains: [Food!]!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  foods: [Food!]!
+  food(id: Int!): Food!
+  recipes: [Recipe!]!
+  recipe(id: Int!): Recipe!
+  recipesLikeName(name: String!): [Recipe!]!
+  eatHistories: [EatHistory!]!
+  eatHistory(id: Int!): EatHistory!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createFood(createFoodInput: CreateFoodInput!): Food!
+  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
+  removeRecipe(id: Int!): Recipe!
+  createEatHistory(createEatHistoryInput: CreateEatHistoryInput!): EatHistory!
+  updateEatHistory(updateEatHistoryInput: UpdateEatHistoryInput!): EatHistory!
+  removeEatHistory(id: Int!): EatHistory!
+}
+
+input CreateUserInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int!
+}
+
+input UpdateUserInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int
+  id: Int!
+}
+
+input CreateFoodInput {
+  name: String!
+  calorie: Float!
+  carbohydrate: Float!
+  sugars: Float!
+  protein: Float!
+  fat: Float!
+  saturatedFat: Float!
+  transFat: Float!
+  cholesterol: Float!
+  sodium: Float!
+}
+
+input CreateRecipeInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int!
+}
+
+input UpdateRecipeInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int
+  id: Int!
+}
+
+input CreateEatHistoryInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int!
+}
+
+input UpdateEatHistoryInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int
+  id: Int!
+}
