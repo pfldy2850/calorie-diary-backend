@@ -17,7 +17,7 @@ export const databaseMySqlProviders = [
         password: 'test-user',
         database: 'CalorieDiary',
         entities: [User, Food, Recipe, EatHistory],
-        synchronize: true,
+        // synchronize: true,
       }),
   },
 ];

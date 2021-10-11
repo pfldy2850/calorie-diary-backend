@@ -9,6 +9,8 @@ import { EatHistoriesModule } from './eat-histories/eat-histories.module';
 import { FoodsModule } from './foods/foods.module';
 import { RecipeesModule } from './recipes/recipes.module';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 // FIXME: load environment variables from .env files
 @Module({
@@ -19,7 +21,10 @@ import { DatabaseModule } from './database/database.module';
       sortSchema: false,
       debug: true,
       playground: true,
+      cors: true,
     }),
+    TypeOrmModule,
+    AuthModule,
     UsersModule,
     FoodsModule,
     RecipeesModule,

@@ -5,7 +5,7 @@ import { CreateFoodInput } from './dto/create-foods.input';
 
 @Resolver(() => Food)
 export class FoodsResolver {
-  constructor(private readonly foodsService: FoodsService) { }
+  constructor(private readonly foodsService: FoodsService) {}
 
   @Mutation(() => Food)
   createFood(@Args('createFoodInput') createFoodInput: CreateFoodInput) {

@@ -8,8 +8,10 @@ type EatHistory {
 }
 
 type User {
-  id: Int!
-  eatHistories: [EatHistory!]!
+  id: String!
+  email: String!
+  password: String!
+  eatHistories: [EatHistory]
 }
 
 type Food {
@@ -35,6 +37,8 @@ type Recipe {
 type Query {
   users: [User!]!
   user(id: Int!): User!
+  userByEmail(email: String!): User!
+  whoAmI: User!
   foods: [Food!]!
   food(id: Int!): Food!
   recipes: [Recipe!]!
@@ -48,6 +52,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  authenticate(loginUserInput: LoginUserInput!): String!
   createFood(createFoodInput: CreateFoodInput!): Food!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
@@ -58,18 +63,19 @@ type Mutation {
 }
 
 input CreateUserInput {
-  """
-  Example field (placeholder)
-  """
-  exampleField: Int!
+  email: String!
+  password: String!
 }
 
 input UpdateUserInput {
-  """
-  Example field (placeholder)
-  """
-  exampleField: Int
+  email: String
+  password: String
   id: Int!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 input CreateFoodInput {
@@ -86,31 +92,23 @@ input CreateFoodInput {
 }
 
 input CreateRecipeInput {
-  """
-  Example field (placeholder)
-  """
+  """Example field (placeholder)"""
   exampleField: Int!
 }
 
 input UpdateRecipeInput {
-  """
-  Example field (placeholder)
-  """
+  """Example field (placeholder)"""
   exampleField: Int
   id: Int!
 }
 
 input CreateEatHistoryInput {
-  """
-  Example field (placeholder)
-  """
+  """Example field (placeholder)"""
   exampleField: Int!
 }
 
 input UpdateEatHistoryInput {
-  """
-  Example field (placeholder)
-  """
+  """Example field (placeholder)"""
   exampleField: Int
   id: Int!
 }
