@@ -14,6 +14,12 @@ type User {
   eatHistories: [EatHistory]
 }
 
+type UserOutput {
+  id: String!
+  email: String!
+  token: String!
+}
+
 type Food {
   id: Int!
   name: String!
@@ -35,10 +41,8 @@ type Recipe {
 }
 
 type Query {
-  users: [User!]!
-  user(id: Int!): User!
-  userByEmail(email: String!): User!
-  whoAmI: User!
+  userByEmail(email: String!): UserOutput!
+  me: UserOutput!
   foods: [Food!]!
   food(id: Int!): Food!
   recipes: [Recipe!]!
@@ -49,10 +53,8 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
-  authenticate(loginUserInput: LoginUserInput!): String!
+  signUpUser(signUpUserInput: SignUpUserInput!): UserOutput!
+  signInUser(signInUserInput: SignInUserInput!): UserOutput!
   createFood(createFoodInput: CreateFoodInput!): Food!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
@@ -62,18 +64,12 @@ type Mutation {
   removeEatHistory(id: Int!): EatHistory!
 }
 
-input CreateUserInput {
+input SignUpUserInput {
   email: String!
   password: String!
 }
 
-input UpdateUserInput {
-  email: String
-  password: String
-  id: Int!
-}
-
-input LoginUserInput {
+input SignInUserInput {
   email: String!
   password: String!
 }

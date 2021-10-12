@@ -1,9 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository, UsingJoinTableIsNotAllowedError } from 'typeorm';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
 import * as jwt from 'jsonwebtoken';
+import { SignUpUserInput } from './dto/signup-user.input';
 
 @Injectable()
 export class UsersService {
@@ -12,13 +11,9 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createUserInput: CreateUserInput): Promise<User> {
-    const created_user = await this.userRepository.save(createUserInput);
-    return created_user;
-  }
-
-  findAll() {
-    return `This action returns all users`;
+  async signUp(signUpUserInput: SignUpUserInput): Promise<User> {
+    const signedUpUser = await this.userRepository.save(signUpUserInput);
+    return signedUpUser;
   }
 
   findOneByEmail(email: string) {
@@ -27,13 +22,5 @@ export class UsersService {
 
   findOneById(id: string) {
     return this.userRepository.findOne({ id });
-  }
-
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }
