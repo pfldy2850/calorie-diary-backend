@@ -2,26 +2,9 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type EatHistory {
+type Diet {
   id: Int!
-  user: User!
-}
-
-type User {
-  id: String!
-  email: String!
-  password: String!
-  eatHistories: [EatHistory]
-}
-
-type UserOutput {
-  id: String!
-  email: String!
-  token: String!
-}
-
-type Food {
-  id: Int!
+  date: String!
   name: String!
   calorie: Float!
   carbohydrate: Float!
@@ -32,36 +15,35 @@ type Food {
   transFat: Float!
   cholesterol: Float!
   sodium: Float!
+  owner: User!
 }
 
-type Recipe {
-  id: Int!
-  name: String!
-  contains: [Food!]!
+type User {
+  id: String!
+  email: String!
+  password: String!
+  diets: [Diet]
+}
+
+type UserOutput {
+  id: String!
+  email: String!
+  token: String!
+  diets: [Diet]
 }
 
 type Query {
   userByEmail(email: String!): UserOutput!
   me: UserOutput!
-  foods: [Food!]!
-  food(id: Int!): Food!
-  recipes: [Recipe!]!
-  recipe(id: Int!): Recipe!
-  recipesLikeName(name: String!): [Recipe!]!
-  eatHistories: [EatHistory!]!
-  eatHistory(id: Int!): EatHistory!
+  diets: [Diet!]!
+  myDiets: [Diet!]!
+  diet(id: Int!): Diet!
 }
 
 type Mutation {
   signUpUser(signUpUserInput: SignUpUserInput!): UserOutput!
   signInUser(signInUserInput: SignInUserInput!): UserOutput!
-  createFood(createFoodInput: CreateFoodInput!): Food!
-  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
-  updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
-  removeRecipe(id: Int!): Recipe!
-  createEatHistory(createEatHistoryInput: CreateEatHistoryInput!): EatHistory!
-  updateEatHistory(updateEatHistoryInput: UpdateEatHistoryInput!): EatHistory!
-  removeEatHistory(id: Int!): EatHistory!
+  registerDiet(registerDietInput: RegisterDietInput!): Diet!
 }
 
 input SignUpUserInput {
@@ -74,7 +56,8 @@ input SignInUserInput {
   password: String!
 }
 
-input CreateFoodInput {
+input RegisterDietInput {
+  date: String!
   name: String!
   calorie: Float!
   carbohydrate: Float!
@@ -85,26 +68,4 @@ input CreateFoodInput {
   transFat: Float!
   cholesterol: Float!
   sodium: Float!
-}
-
-input CreateRecipeInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateRecipeInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateEatHistoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateEatHistoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }

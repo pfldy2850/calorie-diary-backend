@@ -5,9 +5,7 @@ import { join } from 'path/posix';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { EatHistoriesModule } from './eat-histories/eat-histories.module';
-import { FoodsModule } from './foods/foods.module';
-import { RecipeesModule } from './recipes/recipes.module';
+import { DietsModule } from './diets/diets.module';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
@@ -26,9 +24,7 @@ import { PassportModule } from '@nestjs/passport';
     TypeOrmModule,
     AuthModule,
     UsersModule,
-    FoodsModule,
-    RecipeesModule,
-    EatHistoriesModule,
+    DietsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

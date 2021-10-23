@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { EatHistory } from 'src/eat-histories/entities/eat-history.entity';
+import { Diet } from 'src/diets/entities/diet.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -17,10 +17,10 @@ export class User {
   @Field((type) => String)
   password: string;
 
-  @OneToMany((Type) => EatHistory, (eatHistory) => eatHistory.id, {
+  @OneToMany((Type) => Diet, (diet) => diet.id, {
     cascade: true,
     nullable: true,
   })
-  @Field((type) => [EatHistory], { nullable: 'itemsAndList' })
-  eatHistories: EatHistory[];
+  @Field((type) => [Diet], { nullable: 'itemsAndList' })
+  diets: Diet[];
 }

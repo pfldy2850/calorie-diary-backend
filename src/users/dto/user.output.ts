@@ -1,4 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Diet } from 'src/diets/entities/diet.entity';
+import { OneToMany } from 'typeorm';
 
 @ObjectType()
 export class UserOutput {
@@ -10,4 +12,7 @@ export class UserOutput {
 
   @Field()
   token?: string;
+
+  @Field((type) => [Diet], { nullable: 'itemsAndList' })
+  diets?: Diet[];
 }

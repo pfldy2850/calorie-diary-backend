@@ -1,29 +1,29 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
-
-
-export enum FoodMeasure {
-  GRAM = 'g',
-  MILLILITER = 'ml'
-}
-
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Food {
+export class Diet {
   @PrimaryGeneratedColumn()
-  @Field(type => Int)
+  @Field((type) => Int)
   readonly id: number;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 255 })
+  @Field()
+  date: string;
+
+  @Column({ type: 'varchar', length: 255 })
   @Field()
   name: string;
-
-  @Column({ type: 'enum', enum: FoodMeasure })
-  servingSizeUnit: FoodMeasure;
-
-  @Column({ default: 100 })
-  servingSize: number;
 
   @Column({ default: 0 })
   @Field()
@@ -60,4 +60,11 @@ export class Food {
   @Column({ default: 0 })
   @Field()
   sodium: number;
+
+  @ManyToOne((Type) => User, (user) => user.id, {
+    cascade: false,
+    nullable: false,
+  })
+  @Field((type) => User)
+  owner: User;
 }
